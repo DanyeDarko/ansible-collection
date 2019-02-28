@@ -1,0 +1,29 @@
+---
+- name: Install required package
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - apt-transport-https
+    - software-properties-common
+
+- name: Install general package
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - sudo
+    - wget
+    - curl
+    - git
+    - nano
+    - netcat
+    - nmap
+
+- name: "Installing apt dependencies"
+  apt:
+    name: "{{item}}"
+  with_items:
+    - python-dev 
+    - libmysqlclient-dev
+    - python-mysqldb

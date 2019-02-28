@@ -1,0 +1,31 @@
+---
+#- name: Install Elasticsearch 6
+#  yum:
+#    name: https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-6.2.4.rpm
+#    state: present
+
+- name: Add elasticsearch repository key
+  apt_key:
+    url: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+    state: present
+
+- name: Add elasticsearch repository
+  apt_repository:
+    repo: "deb https://artifacts.elastic.co/packages/6.x/apt stable main"
+    state: present
+
+- name: Install elasticsearch
+  apt:
+    name: elasticsearch
+    state: present
+
+- name: Copy elasticsearch.yml
+  template:
+    src: templates/elasticsearch.yml.j2
+    dest: /etc/elasticsearch/elasticsearch.yml
+
+- name: Start elastic
+  service:
+    name: elasticsearch
+    state: started
+    enabled: yes

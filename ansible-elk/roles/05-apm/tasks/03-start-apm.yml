@@ -1,0 +1,6 @@
+---
+- name: Start APM
+  service:
+    name: apm-server
+    state: started
+    enabled: yes

@@ -1,0 +1,16 @@
+---
+- name: Move wp-config-sample.php to wp-config.php
+  copy:
+    src: /var/www/html/wordpress/wp-config-sample.php
+    dest: /var/www/html/wordpress/wp-config.php
+    owner: www-data
+    group: www-data
+    mode: 0755
+    remote_src: True
+
+- name: Modify wp-config.php
+  shell: >
+    sed -i "s/database_name_here/{{ db_name }}/g" /var/www/html/wordpress/wp-config.php &&
+    sed -i "s/username_here/{{ db_user }}/g" /var/www/html/wordpress/wp-config.php && 
+    sed -i "s/password_here/{{ db_pass }}/g" /var/www/html/wordpress/wp-config.php &&
+    sed -i "s/localhost/{{ db_host }}/g" /var/www/html/wordpress/wp-config.php

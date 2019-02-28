@@ -1,0 +1,16 @@
+---
+- name: Digital Ocean droplets provisioning
+  hosts: digitalocean
+  connection: local
+  gather_facts: False
+
+  vars_files:
+    - vars/main.yml
+    - group_vars/main.yml
+
+  tasks:
+    - import_tasks: tasks/01-create.yml
+      tags: create
+
+    - import_tasks: tasks/02-destroy.yml
+      tags: destroy

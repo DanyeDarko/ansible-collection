@@ -1,0 +1,10 @@
+---
+- name: Copy logstash.conf
+  template:
+    src: templates/conf.d/logstash.conf.j2
+    dest: /etc/logstash/conf.d/logstash.conf
+
+- name: Copy nginx.conf
+  template:
+    src: templates/conf.d/nginx.conf.j2
+    dest: /etc/logstash/conf.d/nginx.conf

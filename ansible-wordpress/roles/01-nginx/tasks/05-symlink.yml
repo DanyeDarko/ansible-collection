@@ -1,0 +1,6 @@
+---
+- name: Symlink wordpress conf
+  file:
+    src: /etc/nginx/sites-available/wordpress
+    dest: /etc/nginx/sites-enabled/wordpress
+    state: link

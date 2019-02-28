@@ -1,0 +1,27 @@
+---
+- name: Add Docker repository key
+  apt_key:
+    url: https://download.docker.com/linux/ubuntu/gpg
+    state: present
+
+- name: Add Docker repository
+  apt_repository:
+    repo: "deb https://apt.dockerproject.org/repo ubuntu-xenial main"
+    state: present
+
+- name: Install Docker Community Edition
+  apt:
+    name: docker.io
+    state: present
+
+- name: Add privileged users to docker group
+  user:
+    name: "{{ username }}"
+    groups: docker
+    append: yes
+
+- name: Start docker service
+  service:
+    name: docker
+    state: started
+    enabled: yes

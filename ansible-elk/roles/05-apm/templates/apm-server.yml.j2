@@ -1,0 +1,7 @@
+apm-server:
+  host: "{{ elk_ip }}:8200"
+
+setup.dashboards.enabled: true
+
+output.elasticsearch:
+  hosts: ["http://{{ elastic_ip }}:9200"]

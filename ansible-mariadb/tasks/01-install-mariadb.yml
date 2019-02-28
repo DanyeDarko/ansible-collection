@@ -1,0 +1,28 @@
+---
+- name: Set MySQL root password before installing
+  debconf:
+    name: mariadb-server
+    question: 'mysql-server/root_password'
+    value: '{{ root_pass | quote }}' 
+    vtype: 'password'
+
+- name: Confirm MySQL root password before installing
+  debconf:
+    name: mariadb-server
+    question: 'mysql-server/root_password_again'
+    value: '{{ root_pass | quote }}' 
+    vtype: 'password'
+
+- name: Install mariadb
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - mariadb-server 
+    - mariadb-client
+
+- name: Start mysql service
+  service:
+    name: mysql
+    state: started
+    enabled: yes

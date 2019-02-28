@@ -1,0 +1,5 @@
+---
+- import_tasks: 01-install-mariadb.yml
+- import_tasks: 02-set-root-pass.yml
+- import_tasks: 03-create-db-user.yml
+- import_tasks: 04-create-database.yml

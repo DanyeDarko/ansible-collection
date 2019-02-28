@@ -1,0 +1,13 @@
+---
+- name: update mysql root password for all root accounts from local servers
+  mysql_user: 
+    login_user: root 
+    login_password: "{{ root_pass }}"
+    name: root 
+    host: "{{ item }}" 
+    password: "{{ new_pass }}" 
+    priv: "*.*:ALL,GRANT"
+  with_items:
+    - 127.0.0.1
+    - ::1
+    - localhost

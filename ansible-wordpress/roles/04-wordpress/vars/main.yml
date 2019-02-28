@@ -1,0 +1,3 @@
+---
+new_pass: 'wpzoo13'
+db_pass: "{{ new_pass }}"

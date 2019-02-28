@@ -1,0 +1,6 @@
+---
+- name: restart nginx service
+  shell: systemctl restart nginx
+
+- name: restart php7.1-fpm service
+  shell: systemctl restart php7.1-fpm 

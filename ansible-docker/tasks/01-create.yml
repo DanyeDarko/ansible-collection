@@ -1,0 +1,12 @@
+---
+- name: Pull nginx image
+  docker_image:
+    name: nginx
+    
+- name: start nginx image
+  docker_container:
+    name: webserver
+    image: nginx:latest
+    hostname: nginx
+    ports:
+      - "80:80"

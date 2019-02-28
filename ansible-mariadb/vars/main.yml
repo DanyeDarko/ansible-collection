@@ -1,0 +1,5 @@
+---
+new_user: "maria"
+new_pass: 'mari@db24'
+root_pass: "{{ new_pass }}"
+db_pass: "{{ new_pass }}"

@@ -1,0 +1,54 @@
+user www-data;
+worker_processes 4;
+pid /var/run/nginx.pid;
+
+events {
+         worker_connections 768;
+         # multi_accept on;
+}
+
+http {
+
+         ##
+         # Basic Settings
+         ##
+
+         sendfile on;
+         tcp_nopush on;
+         tcp_nodelay on;
+         keepalive_timeout 65;
+         types_hash_max_size 2048;
+         server_tokens off;
+
+         # server_names_hash_bucket_size 64;
+         # server_name_in_redirect off;
+
+         include /etc/nginx/mime.types;
+         default_type application/octet-stream;
+
+         ##
+         # Gzip Settings
+         ##
+
+         gzip on;
+         gzip_disable "msie6";
+
+         gzip_vary on;
+         gzip_proxied any;
+         gzip_comp_level 6;
+         gzip_buffers 16 8k;
+         gzip_http_version 1.1;
+         gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript;
+
+         add_header X-Frame-Options SAMEORIGIN;
+         add_header X-Content-Type-Options nosniff;
+         add_header X-XSS-Protection "1; mode=block";
+         add_header Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://ssl.google-analytics.com https://assets.zendesk.com https://connect.facebook.net; img-src 'self' https://ssl.google-analytics.com https://s-static.ak.facebook.com https://assets.zendesk.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://assets.zendesk.com; font-src 'self' https://themes.googleusercontent.com; frame-src https://assets.zendesk.com https://www.facebook.com https://s-static.ak.facebook.com https://tautt.zendesk.com; object-src 'none'";
+
+        ##
+        # Virtual Host Configs
+        ##
+
+        #include /etc/nginx/conf.d/*.conf;
+        include /etc/nginx/sites-enabled/*;
+}

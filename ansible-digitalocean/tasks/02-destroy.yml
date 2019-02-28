@@ -1,0 +1,6 @@
+- name: Delete droplet
+  digital_ocean:
+    state: absent
+    name: "{{ droplet_name }}"
+    unique_name: yes
+    api_token: "{{ token }}"

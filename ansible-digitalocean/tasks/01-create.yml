@@ -1,0 +1,34 @@
+- name: Ensure a SSH key is present
+  digital_ocean:
+    state: present
+    command: ssh
+    name: ssh_key
+    ssh_pub_key: "{{ SSH_PUBLIC_KEY }}"
+    api_token: "{{ API_TOKEN }}"
+
+- name: Create new droplet {{ fqdn }}
+  digital_ocean:
+    state: present
+    command: droplet
+    name: "{{ fqdn }}"
+    image_id: "{{ do_images[do_image] }}"
+    size_id: "{{ do_sizes[do_size] }}"
+    region_id: "{{ do_regions[do_region] }}"
+    ssh_key_ids: "{{ SSH_KEY_ID }}"
+    api_token: "{{ API_TOKEN }}"
+    wait_timeout: 700
+  register: do_droplet
+
+- debug:
+    msg: "Droplet ID : {{ do_droplet.droplet.id }} "
+
+- debug:
+    msg: "Droplet Name : {{ do_droplet_name }}"
+
+- debug:
+    msg: "Droplet IP : {{ do_droplet.droplet.ip_address }} "
+
+- digital_ocean_domain:
+    state: present
+    name: "{{ fqdn }}"
+    ip: "{{ do_droplet.droplet.ip_address }}"

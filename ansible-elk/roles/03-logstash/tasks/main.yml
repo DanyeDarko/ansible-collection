@@ -1,0 +1,4 @@
+---
+- include_tasks: 01-install-logstash.yml
+- include_tasks: 02-copy-config.yml
+- include_tasks: 03-install-geoip.yml

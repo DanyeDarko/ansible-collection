@@ -1,0 +1,28 @@
+filter {
+  grok {
+    match => [ "message" , "%{IPORHOST:remote_ip} - %{DATA:user_name} \[%{HTTPDATE:access_time}\] \"%{WORD:http_method} %{DATA:url} HTTP/%{NUMBER:http_version}\" %{NUMBER:response_code} %{NUMBER:body_sent_bytes} \"%{DATA:referrer}\" \"%{DATA:agent}\""]
+    overwrite => [ "message" ]
+  }
+
+  geoip {
+    source => "remote_ip"
+    target => "geoip"
+    database => "/var/opt/GeoLite2-City/GeoLite2-City.mmdb"
+    fields => ["country_name", "country_code3", "region_name", "location"]
+  }
+
+  mutate {
+    convert => ["response", "integer"]
+    convert => ["bytes", "integer"]
+    convert => ["responsetime", "float"]
+  }
+
+  date {
+    match => [ "timestamp" , "dd/MMM/YYYY:HH:mm:ss Z" ]
+    remove_field => [ "timestamp" ]
+  }
+
+  useragent {
+    source => "agent"
+  }
+}

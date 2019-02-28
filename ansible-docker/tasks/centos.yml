@@ -1,0 +1,32 @@
+---
+- name: Install required dependencies
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - yum-utils 
+    - device-mapper-persistent-data 
+    - lvm2
+
+- name: Add Docker CE repo
+  yum_repository:
+    name: docker-ce
+    description: Docker CE repo
+    baseurl: https://download.docker.com/linux/centos/docker-ce.repo
+
+- name: Install Docker Community Edition
+  yum:
+    name: docker-ce
+    state: present
+
+- name: Add privileged users to docker group
+  user:
+    name: "{{ username }}"
+    groups: docker
+    append: yes
+
+- name: Start docker service
+  service:
+    name: docker
+    state: started
+    enabled: yes

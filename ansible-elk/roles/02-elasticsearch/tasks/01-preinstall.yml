@@ -1,0 +1,15 @@
+---
+#- name: Install OpenJDK 8
+#  yum:
+#    name: java-1.8.0
+#    state: present
+
+#- name: Add GPG key for elasticsearch
+#  rpm_key:
+#    key: https://artifacts.elastic.co/GPG-KEY-elasticsearch
+#    state: present
+
+- name: Install OpenJDK 8
+  apt:
+    name: openjdk-8-jdk
+    state: present

@@ -1,0 +1,4 @@
+---
+- name: Install APM server
+  apt:
+    deb: https://artifacts.elastic.co/downloads/apm-server/apm-server-6.4.2-amd64.deb

@@ -1,0 +1,9 @@
+---
+- name: Create user for access Kibana
+  htpasswd:
+    path: /etc/nginx/htpasswd.users
+    name: kibana
+    password: 'kibana'
+    owner: root
+    group: root
+    mode: 0644

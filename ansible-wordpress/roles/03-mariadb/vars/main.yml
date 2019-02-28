@@ -1,0 +1,5 @@
+---
+new_pass: 'wpzoo13'
+root_pass: "{{ new_pass }}"
+new_user: "wordpress"
+db_pass: "{{ new_pass }}"

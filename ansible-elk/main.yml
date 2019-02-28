@@ -1,0 +1,29 @@
+---
+- name: Start to provisioning
+  hosts: local
+  connection: local
+  gather_facts: False
+
+  tasks:
+    - name: Add host to inventory
+      add_host:
+        name: Install ELK
+        groups: elk
+        ansible_python_interpreter: /usr/bin/python3
+        ansible_ssh_host: "{{ elk_ip }}"
+        ansible_ssh_port: 22
+        ansible_ssh_user: root
+        ansible_ssh_private_key_file: "~/.ssh/{{ elk_pubkey }}.pem"
+
+- name: Execute roles
+  hosts: elk
+  remote_user: root
+  gather_facts: True
+
+  roles:
+    - 00-general
+    - 01-nginx
+    - 02-elasticsearch
+    - 03-logstash
+    - 04-kibana
+    - 05-apm

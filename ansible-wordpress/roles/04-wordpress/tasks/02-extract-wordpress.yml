@@ -1,0 +1,9 @@
+---
+- name: Extract wordpress latest tar
+  unarchive:
+    src: /tmp/wordpress-5.0.2.tar.gz
+    dest: /var/www/html/
+    owner: www-data
+    group: www-data
+    mode: 0755
+    remote_src: yes

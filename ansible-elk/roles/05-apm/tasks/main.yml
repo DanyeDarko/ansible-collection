@@ -1,0 +1,4 @@
+---
+- import_tasks: 01-install-apm.yml
+- import_tasks: 02-copy-config.yml
+- import_tasks: 03-start-apm.yml

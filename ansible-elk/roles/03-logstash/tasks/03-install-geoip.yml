@@ -1,0 +1,11 @@
+---
+- name: Download GeoIP db
+  command: wget http://geolite.maxmind.com/download/geoip/database/GeoLite2-City.mmdb.gz
+  args:
+    chdir: /etc/logstash
+
+- name: Extract GeoIP db
+  unarchive:
+    src: /etc/logstash/GeoLite2-City.mmdb.gz
+    dest: /etc/logstash/
+    remote_src: yes

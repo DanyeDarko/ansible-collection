@@ -1,0 +1,4 @@
+---
+- include_tasks: 01-install-nginx.yml
+- include_tasks: 02-create-user.yml
+- include_tasks: 03-copy-config.yml

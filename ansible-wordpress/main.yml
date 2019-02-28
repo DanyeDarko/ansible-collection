@@ -1,0 +1,28 @@
+---
+- name: Provisioning LEMP Stack
+  hosts: local
+  connection: local
+  gather_facts: False
+
+  tasks:
+    - name: Add host to inventory
+      add_host:
+        name: Install LEMP Stack
+        groups: lemp
+        ansible_python_interpreter: /usr/bin/python3
+        ansible_ssh_host: "{{ ip_addr }}"
+        ansible_ssh_user: root
+        ansible_ssh_port: 22
+        ansible_ssh_private_key_file: "~/.ssh/zerocloud"
+
+- name: Execute roles
+  hosts: lemp
+  remote_user: root
+  gather_facts: True
+
+  roles:
+    - 00-general
+    - 01-nginx
+    - 02-php7.1
+    - 03-mariadb
+    - 04-wordpress

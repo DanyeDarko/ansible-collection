@@ -1,0 +1,5 @@
+---
+- import_tasks: 01-download-wordpress.yml
+- import_tasks: 02-extract-wordpress.yml
+- import_tasks: 03-config-wordpress.yml
+- import_tasks: 04-restart-service.yml

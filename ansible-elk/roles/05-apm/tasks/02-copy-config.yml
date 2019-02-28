@@ -1,0 +1,5 @@
+---
+- name: Copy apm-server.yml
+  template:
+    src: templates/apm-server.yml.j2
+    dest: /etc/apm-server/apm-server.yml

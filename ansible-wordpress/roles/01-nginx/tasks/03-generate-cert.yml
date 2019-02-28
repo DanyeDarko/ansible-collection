@@ -1,0 +1,15 @@
+---
+- name: Check if dhparam.pem is exists
+  stat:
+    path: /etc/ssl/certs/dhparam.pem
+  register: dhparam
+
+- block:
+  - name: Generate a stronger DHE parameter
+    shell: openssl dhparam -out dhparam.pem 2048
+    args:
+      chdir: /etc/ssl/certs
+  when: dhparam.stat.exists == False
+
+- name: Create new certificate
+  shell: letsencrypt certonly --email zerocloud@zoho.com -a webroot --webroot-path=/var/www/html/wordpress -d {{ fqdn }} -d www.{{ fqdn }} --agree-tos

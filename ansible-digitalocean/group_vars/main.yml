@@ -1,0 +1,30 @@
+---
+do_sizes:
+  do_size_1: s-1vcpu-1gb
+  do_size_2: s-1vcpu-2gb
+  do_size_3: s-1vcpu-3gb
+  do_size_4: s-2vcpu-2gb
+  do_size_5: s-3vcpu-1gb
+  do_size_6: s-2vcpu-4gb
+
+do_images:
+  do_image_1: ubuntu-18-04-x64
+  do_image_2: ubuntu-16-04-x64
+  do_image_3: ubuntu-16-04-x32
+  do_image_4: ubuntu-14-04-x64
+  do_image_5: ubuntu-14-04-x32
+  do_image_6: fedora-28-x64
+  do_image_7: fedora-27-x64
+  do_image_8: debian-9-x64
+  do_image_9: debian-8-x64
+  do_image_10: debian-8-x32 
+  do_image_11: centos-7-x64
+  do_image_12: centos-6-x64
+  do_image_13: centos-6-x32
+
+do_regions:
+  do_region_1: nyc1
+  do_region_2: ams1
+  do_region_3: sfo1
+  do_region_4: sgp1
+  do_region_5: lon1

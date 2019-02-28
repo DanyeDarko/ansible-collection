@@ -1,0 +1,7 @@
+---
+- import_tasks: 01-install-nginx.yml
+#- import_tasks: 02-install-letsencrypt.yml
+#- import_tasks: 03-generate-cert.yml
+- import_tasks: 04-copy-config.yml
+- import_tasks: 05-symlink.yml
+

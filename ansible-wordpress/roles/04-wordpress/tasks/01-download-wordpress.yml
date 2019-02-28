@@ -1,0 +1,5 @@
+---
+- name: Download wordpress
+  get_url:
+    url: http://wordpress.org/latest.tar.gz
+    dest: /tmp/

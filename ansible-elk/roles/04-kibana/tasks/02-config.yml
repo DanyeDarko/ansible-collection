@@ -1,0 +1,11 @@
+---
+- name: Copy kibana.yml
+  template:
+    src: templates/kibana.yml.j2
+    dest: /etc/kibana/kibana.yml
+
+- name: Start kibana
+  service:
+    name: kibana
+    state: started
+    enabled: yes
